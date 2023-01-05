@@ -14,10 +14,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     List<User> findBySeqIn(List<Long> userSeqList);
 
-    List<User> findBySmsYnAndStatus(String smsYn, Integer status);
-
-    List<User> findByWithdrawalExpectAndStatus(LocalDateTime withdrawalExpect, Integer status);
-
     Integer deleteByUsername(String username);
 
     Integer deleteBySeq(Long userSeq);
@@ -26,7 +22,4 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     Boolean existsByUsername(String username);
 
-    Boolean existsByPhone(String phone);
-
-    List<User> findAllByPhone(String phone);
 }

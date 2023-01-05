@@ -15,6 +15,7 @@ import java.util.Set;
 @Entity
 @Table(name = "tb_user")
 @Getter
+@Setter
 @ToString
 @NoArgsConstructor
 @DynamicInsert
