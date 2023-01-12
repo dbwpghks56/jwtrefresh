@@ -135,9 +135,9 @@ public class AuthServiceImpl implements AuthService {
 
     @Transactional(readOnly = true)
     public String getUserName(String accessToken) throws Exception {
-        String username = jwtUtils.getUserNameFromAccessToken(accessToken);
+        UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        return username;
+        return userDetails.getEmail();
     }
 
     /**
