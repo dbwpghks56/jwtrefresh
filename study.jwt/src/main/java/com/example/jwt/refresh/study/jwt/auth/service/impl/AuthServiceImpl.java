@@ -137,7 +137,7 @@ public class AuthServiceImpl implements AuthService {
     public String getUserName(String accessToken) throws Exception {
         UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        return userDetails.getEmail();
+        return userDetails.getEmail() + userDetails.getSeq();
     }
 
     /**
@@ -162,7 +162,7 @@ public class AuthServiceImpl implements AuthService {
                 .pushToken(requestDto.getPushToken())
                 .build();
 
-        Role trafficSafetyUserRole = roleRepository.findByRole(ERole.ROLE_TRAFFIC_SAFETY_USER)
+        Role trafficSafetyUserRole = roleRepository.findByRole(ERole.USER)
                 .orElseThrow(() -> new RestException(HttpStatus.NOT_FOUND, "해당 Role을 찾지못했습니다."));
         roles.add(trafficSafetyUserRole);
         newUserEntity.setRoles(roles);
@@ -191,21 +191,12 @@ public class AuthServiceImpl implements AuthService {
 
         Set<Role> roles = new HashSet<>();
 
-        Role adminRole = roleRepository.findByRole(ERole.ROLE_ADMIN)
-                .orElseThrow(() -> new RestException(HttpStatus.NOT_FOUND, "해당하는 Role 을 찾지 못했습니다. role=" + ERole.ROLE_ADMIN));
+        Role adminRole = roleRepository.findByRole(ERole.ADMIN)
+                .orElseThrow(() -> new RestException(HttpStatus.NOT_FOUND, "해당하는 Role 을 찾지 못했습니다. role=" + ERole.ADMIN));
         roles.add(adminRole);
-        Role transUserRole = roleRepository.findByRole(ERole.ROLE_TRANS_USER)
-                .orElseThrow(() -> new RestException(HttpStatus.NOT_FOUND, "해당하는 Role 을 찾지 못했습니다. role=" + ERole.ROLE_TRANS_USER));
+        Role transUserRole = roleRepository.findByRole(ERole.USER)
+                .orElseThrow(() -> new RestException(HttpStatus.NOT_FOUND, "해당하는 Role 을 찾지 못했습니다. role=" + ERole.USER));
         roles.add(transUserRole);
-        Role transManagerRole = roleRepository.findByRole(ERole.ROLE_TRANS_MANAGER)
-                .orElseThrow(() -> new RestException(HttpStatus.NOT_FOUND, "해당하는 Role 을 찾지 못했습니다. role=" + ERole.ROLE_TRANS_MANAGER));
-        roles.add(transManagerRole);
-        Role trafficSatefyUserRole = roleRepository.findByRole(ERole.ROLE_TRAFFIC_SAFETY_USER)
-                .orElseThrow(() -> new RestException(HttpStatus.NOT_FOUND, "해당하는 Role 을 찾지 못했습니다. role=" + ERole.ROLE_TRAFFIC_SAFETY_USER));
-        roles.add(trafficSatefyUserRole);
-        Role trafficSafetyManager = roleRepository.findByRole(ERole.ROLE_TRAFFIC_SAFETY_MANAGER)
-                .orElseThrow(() -> new RestException(HttpStatus.NOT_FOUND, "해당하는 Role 을 찾지 못했습니다. role=" + ERole.ROLE_TRAFFIC_SAFETY_MANAGER));
-        roles.add(trafficSafetyManager);
 
         userEntity.setRoles(roles);
         userRepository.save(userEntity);

@@ -1,6 +1,7 @@
 package com.example.jwt.refresh.study.jwt.user.domain.model;
 
 import com.example.jwt.refresh.study.jwt.auth.domain.model.Role;
+import com.example.jwt.refresh.study.jwt.auth.provider.ProviderType;
 import com.example.jwt.refresh.study.jwt.boot.domain.model.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
@@ -34,6 +35,10 @@ public class User extends BaseEntity {
 
     @JsonIgnore
     private String password;
+
+    @Column(name = "provider_type")
+    @Enumerated(EnumType.STRING)
+    private ProviderType providerType;
 
     private String name;
     private String birth;
