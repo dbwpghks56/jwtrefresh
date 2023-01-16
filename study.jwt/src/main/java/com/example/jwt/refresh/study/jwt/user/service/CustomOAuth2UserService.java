@@ -8,7 +8,7 @@ import com.example.jwt.refresh.study.jwt.user.domain.model.User;
 import com.example.jwt.refresh.study.jwt.user.domain.repository.UserRepository;
 import com.example.jwt.refresh.study.jwt.user.dto.info.OAuth2UserInfo;
 import com.example.jwt.refresh.study.jwt.user.dto.principal.UserPrincipal;
-import com.example.jwt.refresh.study.jwt.user.factory.OAuth2UserInfoFactory;
+import com.example.jwt.refresh.study.jwt.auth.factory.OAuth2UserInfoFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
@@ -18,7 +18,6 @@ import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
-import javax.naming.AuthenticationException;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;

@@ -1,4 +1,4 @@
-package com.example.jwt.refresh.study.jwt.user.factory;
+package com.example.jwt.refresh.study.jwt.auth.factory;
 
 import com.example.jwt.refresh.study.jwt.auth.provider.ProviderType;
 import com.example.jwt.refresh.study.jwt.user.dto.info.KakaoOAuth2UserInfo;
